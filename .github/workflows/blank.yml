@@ -27,5 +27,12 @@ jobs:
 
       - name: Set output
         run: echo "{MAIN_COUNTER}={2}" >> $GITHUB_OUTPUT
+      - uses: octokit/request-action@v2.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.UPDATER_TOKEN }}
+        with:
+          route: 'PATCH /repos/{owner}/{repo}/actions/variables/MAIN_COUNTER'
+          owner: context.repo.owner          
+          repo: request-action
           
                 
