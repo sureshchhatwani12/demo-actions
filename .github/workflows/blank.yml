@@ -25,18 +25,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: GitHub API Request
-        # You may pin to the exact commit or the version.
-        # uses: octokit/request-action@7e93b91076fad3920c29d44eb2a6311d929db3dd
-        uses: octokit/request-action@v2.1.0
-        env:
-         GITHUB_TOKEN: ${{ secrets.UPDATER_TOKEN }}
-        with:         
-          # HTTP Verb + path as shown on https://developer.github.com/v3/
-          route: PATCH /repos/{owner}/{repo}/actions/variables/MAIN_COUNTER
-          repo: context.repo.repo
-          owner: context.repo.owner
-          name: context.repo.owner
-          value: 2
+      - name: Set output
+        run: echo "{MAIN_COUNTER}={2}" >> $GITHUB_OUTPUT
           
                 
